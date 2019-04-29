@@ -8,16 +8,37 @@ import re
 random = 'https://en.wikipedia.org/wiki/Special:Random'
 
 
-def get_url(source):
+def page(link):  # returns a string of the link; link is a HTTPResponse representation of the actual link
+    return link.geturl()
+
+
+def get_url(link):  # returns the HTTPResponse of the link; link is a string representation of a url
 
     try:
-        if source.lower() == 'r':
+        if link.lower() == 'r':
             url = urllib.request.urlopen(random)
         else:
-            url = urllib.request.urlopen(source)
-        return url.geturl()
+            url = urllib.request.urlopen(link)
+        return url
 
     except urllib.error.URLError:
         return None
     except ValueError:
         return None
+
+
+def get_links(link):  # returns a set of all links on that page; link is a HTTPResponse object
+    source = str(link.read())  # source is a string of the page sources
+
+    links = set()
+    regex = re.compile('(?:a href=("/wiki/[^:]*?"))')
+    path_list = regex.findall(source)
+
+    # iterates through every link on the page
+    for i in path_list:
+        links.add('https://en.wikipedia.org' + i.split("\"")[1])  # adds the link
+
+    links.discard(link.geturl())  # removes all references to the current page
+
+    return links
+
