@@ -13,5 +13,13 @@ while True:
         print("Invalid entry\n")
     else:
         break
+        
+# TEST CODE BELOW
 
-print("done")
+print("\nEntry Complete\n")
+
+print(webpage.page(start_page))
+print(webpage.get_links(start_page))
+
+print("\n" + webpage.page(end_page))
+print(webpage.get_links(end_page))
