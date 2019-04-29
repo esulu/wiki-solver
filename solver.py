@@ -2,7 +2,9 @@
 
 import webpage
 
-# User entry
+print("Welcome to the Wikipedia solver! To begin, enter start/end pages, or type \"r\" for random Wikipedia pages")
+
+# user entry
 while True:
     start_page = webpage.get_url(input("Starting wikipedia page: "))
     end_page = webpage.get_url(input("Ending wikipedia page: "))
