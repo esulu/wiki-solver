@@ -39,7 +39,8 @@ def get_url(link):  # returns the HTTPResponse of the link; link is a string rep
         return None
 
 
-def get_links(link):  # returns a set of all links on that page; link is a HTTPResponse object
+def get_links(link):  # returns a set of all links on that page; link is a string
+    link = get_url(link)
     source = str(link.read())  # source is a string of the page source
 
     links = set()
