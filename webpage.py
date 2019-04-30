@@ -17,7 +17,10 @@ def page(link):  # returns a string of the link; link is a HTTPResponse represen
 def print_data(path):  # returns a list of the path with the links
     data = []
     for i in path:
-        data.append(page(i))
+        if type(i) != str:
+            data.append(page(i))
+        else:
+            data.append(i)
 
     return data
 
