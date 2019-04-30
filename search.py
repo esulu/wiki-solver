@@ -34,15 +34,23 @@ def shortest_path(start_page, end_page):
         if length >= min_length:
             return visited, length  # dip to next iteration?
 
-        # iterate through all adjacent vertices (web pages)
+        # iterate through all adjacent vertices (web pages) note: i is a link in string form
         for i in webpage.get_links(current):
-
-            # end page is found
-            if webpage.page(i) == webpage.page(end_page):
+            print("Current adjacent: {}".format(webpage.page(webpage.get_url(i))))
+            # end page is found to be adjacent to the current page
+            if i == webpage.page(end_page):
+                print("\nPAGE FOUND")
                 visited[i] = current
-                path = complete_path(visited, current)  # adds the current and the previous pages to the path
+                path = complete_path(visited, i)  # adds the current and the previous pages to the path
                 shortest = set_shortest(shortest, path)
                 return path, length  # remove the return statement? might be shorter one still
+
+            # adjacent vertex is already in the current shortest path
+            elif i in shortest:
+                visited[i] = current
+                print("Found shortcut")
+                path = complete_path(visited, i)
+                path_rest = complete_path(shortest, i)
 
     return shortest, min_length
 
@@ -64,7 +72,7 @@ def complete_path(visited_page, end_page):
 # current path is the shortest path if it is shorter than the previous one
 def set_shortest(prev_shortest, current_shortest):
     shortest = prev_shortest
-    
+
     if len(current_shortest) < len(prev_shortest):
         shortest = current_shortest
 
