@@ -32,7 +32,7 @@ def shortest_path(start_page, end_page):
 
         # current length is greater than previous lowest length
         if length >= min_length:
-            return visited  # dip to next iteration?
+            return visited, length  # dip to next iteration?
 
         # iterate through all adjacent vertices (web pages)
         for i in webpage.get_links(current):
@@ -41,7 +41,8 @@ def shortest_path(start_page, end_page):
             if webpage.page(i) == webpage.page(end_page):
                 visited[i] = current
                 path = complete_path(visited, current)  # adds the current and the previous pages to the path
-                return path, length
+                shortest = set_shortest(shortest, path)
+                return path, length  # remove the return statement? might be shorter one still
 
     return shortest, min_length
 
@@ -59,3 +60,12 @@ def complete_path(visited_page, end_page):
 
     return path
 
+
+# current path is the shortest path if it is shorter than the previous one
+def set_shortest(prev_shortest, current_shortest):
+    shortest = prev_shortest
+    
+    if len(current_shortest) < len(prev_shortest):
+        shortest = current_shortest
+
+    return shortest
