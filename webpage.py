@@ -15,7 +15,6 @@ def page(link):  # returns a string of the link; link is a HTTPResponse represen
 
 
 def get_url(link):  # returns the HTTPResponse of the link; link is a string representation of a url
-
     try:
         if link.lower() == 'r':
             url = urllib.request.urlopen(random)
