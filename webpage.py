@@ -6,6 +6,8 @@ import re
 
 # link to a random Wikipedia article
 random = 'https://en.wikipedia.org/wiki/Special:Random'
+# link to the Wikipedia main page
+main = 'https://en.wikipedia.org/wiki/Main_Page'
 
 
 def page(link):  # returns a string of the link; link is a HTTPResponse representation of the actual link
@@ -28,7 +30,7 @@ def get_url(link):  # returns the HTTPResponse of the link; link is a string rep
 
 
 def get_links(link):  # returns a set of all links on that page; link is a HTTPResponse object
-    source = str(link.read())  # source is a string of the page sources
+    source = str(link.read())  # source is a string of the page source
 
     links = set()
     regex = re.compile('(?:a href=("/wiki/[^:]*?"))')
@@ -38,7 +40,7 @@ def get_links(link):  # returns a set of all links on that page; link is a HTTPR
     for i in path_list:
         links.add('https://en.wikipedia.org' + i.split("\"")[1])  # adds the link
 
-    links.discard(link.geturl())  # removes all references to the current page
+    links.discard(main)  # removes all references to the main page
 
     return links
 
