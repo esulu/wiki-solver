@@ -1,6 +1,7 @@
 # Wikipedia game solver main class
 
 import webpage
+import search
 
 print("Welcome to the Wikipedia solver! To begin, enter start/end pages, or type \"r\" for random Wikipedia pages")
 
@@ -13,13 +14,17 @@ while True:
         print("Invalid entry\n")
     else:
         break
-        
+
 # TEST CODE BELOW
 
 print("\nEntry Complete\n")
 
-print(webpage.page(start_page))
+'''print(webpage.page(start_page))
 print(webpage.get_links(start_page))
 
 print("\n" + webpage.page(end_page))
-print(webpage.get_links(end_page))
+print(webpage.get_links(end_page))'''
+
+path, length = search.shortest_path(start_page, end_page)
+print(path)
+print("Length: ", length)
