@@ -14,6 +14,14 @@ def page(link):  # returns a string of the link; link is a HTTPResponse represen
     return link.geturl()
 
 
+def print_data(path):  # returns a list of the path with the links
+    data = []
+    for i in path:
+        data.append(page(i))
+
+    return data
+
+
 def get_url(link):  # returns the HTTPResponse of the link; link is a string representation of a url
     try:
         if link.lower() == 'r':
