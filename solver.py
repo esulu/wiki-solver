@@ -26,4 +26,3 @@ for i in path:
 
 print(webpage.print_data(path))
 print("Clicks Required: " + str(length-1))
-print("end of program")
