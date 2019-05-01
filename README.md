@@ -5,6 +5,7 @@ Finds the lowest amount of links required to traverse two Wikipedia pages, using
 - urllib module is required to use the program
 
 ### Instructions For Use
+- Input/Output will be done in the solver.py program
 - You will be prompted to enter two Wikipedia pages 
 - note: there is also an option to use random pages by typing "r" in the input 
 - The program will search starting from the initial page to find the minimum amount of clicks required to reach the second Wikipedia page
