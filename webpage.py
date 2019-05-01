@@ -17,10 +17,7 @@ def page(link):  # returns a string of the link; link is a HTTPResponse represen
 def print_data(path):  # returns a list of the path with the links
     data = []
     for i in path:
-        if type(i) != str:
-            data.append(page(i))
-        else:
-            data.append(i)
+        data.append(i)
 
     return data
 
@@ -39,7 +36,7 @@ def get_url(link):  # returns the HTTPResponse of the link; link is a string rep
         return None
 
 
-def get_links(link):  # returns a set of all links on that page; link is a string
+def get_links(link):  # returns a set of all links on that page; link is a string representation of a url
     link = get_url(link)
     source = str(link.read())  # source is a string of the page source
 
