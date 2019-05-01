@@ -1,5 +1,4 @@
 # Uses breadth-first search to determine the lowest amount of clicks required for traversal
-# WIP
 
 import webpage
 from queue import *
@@ -17,10 +16,9 @@ def shortest_path(start_page, end_page):
 
     # start and end are the same
     if start_page == end_page:
-        return [start_page, end_page], length
+        return [start_page, end_page]
 
     # marks the sources node as visited and enqueues it
-    #queue.put(webpage.page(start_page))
     queue.put(start_page)
 
     while queue:
@@ -29,16 +27,16 @@ def shortest_path(start_page, end_page):
         current = queue.get()
         length += 1
         print("Current url: " + current)
-        #print("Current url: {}".format(webpage.page(current)))
 
         # current length is greater than previous lowest length
         if length >= min_length:
-            print("\nspecial case")
-            return visited  # dip to next iteration?
+            continue
 
         # iterate through all adjacent vertices (web pages) note: i is a link in string form
         for i in webpage.get_links(current):
+
             print("Current adjacent: " + i)
+
             # end page is found to be adjacent to the current page
             if i == end_page:
                 print("\nPAGE FOUND")
@@ -48,9 +46,9 @@ def shortest_path(start_page, end_page):
                 return path  # remove the return statement? might be shorter one still
 
             # adjacent vertex is already in the current shortest path
+            # adds the rest of the adjacent vertex path to the defined shortest path
             elif i in shortest:
                 visited[i] = current
-                print("Found shortcut")
                 path = complete_path(visited, i)
                 path_tail = complete_path(shortest, i)
                 path_tail.reverse()
