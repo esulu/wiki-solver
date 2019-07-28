@@ -1,5 +1,5 @@
 # wiki-solver
-Finds the lowest amount of links required to traverse two Wikipedia pages, using only the links presented on the Wikipedia pages
+Finds the lowest number of links required to traverse two Wikipedia pages, using only the links presented on the Wikipedia pages
 
 ### Requirements 
 - urllib module is required to use the program
